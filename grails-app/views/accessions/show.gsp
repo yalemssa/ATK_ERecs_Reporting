@@ -51,10 +51,9 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${locs}" var="loc">
-        
+      <g:each in="${locations}" var="loc">
         <tr>
-          <td><a href="${loc.href}">${loc.title}</a></td>
+          <td>${loc}</td>
          
         </tr>
       </g:each>

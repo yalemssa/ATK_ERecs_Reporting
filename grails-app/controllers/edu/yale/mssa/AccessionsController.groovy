@@ -32,6 +32,20 @@ class AccessionsController {
    def show = {
        def acc = Accessions.get(params.id)
        def refs = Refs.findAllByAccessionId(params.id)
-       [acc:acc, refs: refs]
+       
+       def locations = []
+       def locs = AccLoc.findAllByAccId(params.id)
+        
+       locs.each{
+           def l = Locations.get(it.locId)
+           StringBuilder locString = new StringBuilder()
+            .append(l.building)
+            .append(" " + l.room)
+            .append(" " + l.co1)
+            (l.co1num == 0.0) ? locString.append(" " + l.co1alpha) : locString.append(" " + l.co1num)
+            
+            locations.add(locString.toString())
+       }
+       [acc:acc, refs: refs, locations: locations]
    }
 }

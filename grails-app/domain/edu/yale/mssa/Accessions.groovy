@@ -7,6 +7,12 @@ class Accessions {
     String accNum3
     String accTitle
     Boolean accFlag
+    Float accMb
+    String accProcessingPlan
+    String accProcessingStatus
+    Double accExtentNumber
+    String accExtentType
+    String accContainerSummary
     
     static constraints = {
     }
@@ -21,6 +27,12 @@ class Accessions {
             accNum3 column: "accessionNumber3"
             accTitle column: "title"
             accFlag column: "userDefinedBoolean2"
+            accMb column : "userDefinedReal1"
+            accProcessingPlan column : "processingPlan"
+            accProcessingStatus column : "processingStatus"
+            accExtentNumber column : "extentNumber"
+            accExtentType column : "extentType"
+            accContainerSummary column : "containerSummary"
             
         }
     }

@@ -14,7 +14,15 @@ class AccessionsController {
        }
        
        
-       h.sort()
+       h.each(){
+           it.getValue().sort{a,b ->
+               if(a.accNum2 == b.accNum2){
+                   a.accNum3 <=> b.accNum3
+               }
+               
+               a.accNum2 <=> b.accNum2
+           }
+       }
        
        h.each{
            float total = 0.0;

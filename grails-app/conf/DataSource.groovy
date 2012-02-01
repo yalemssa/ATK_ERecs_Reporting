@@ -1,8 +1,8 @@
 dataSource {
     pooled = true
-    driverClassName = "com.mysql.jdbc.Driver"
-    username = "aTreadOnly"
-    password = "m554"
+    driverClassName = "org.hsqldb.jdbcDriver"
+    username = "sa"
+    password = ""
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -13,21 +13,20 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = 'update'
-            url = "jdbc:mysql://mssaserver04.library.yale.edu:3306/yale"
+            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+            url = "jdbc:hsqldb:mem:devDB"
         }
     }
     test {
         dataSource {
-            dbCreate = 'update'
-            url = "jdbc:mysql://mssaserver04.library.yale.edu:3306/yale"
+            dbCreate = "update"
+            url = "jdbc:hsqldb:mem:testDb"
         }
     }
-    
     production {
         dataSource {
-            dbCreate = 'update'
-            url = "jdbc:mysql://avideo.library.yale.edu:3306/yale"
+            dbCreate = "update"
+            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
         }
     }
 }

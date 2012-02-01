@@ -2,7 +2,7 @@ package edu.yale.mssa
 
 class AccessionsController {
 
-   def list = {
+    def list = {
        def accs = Accessions.findAllByAccFlag(true)
        Map<String, ArrayList<Accessions>>  h= new TreeMap<String, ArrayList<Accessions>>()
        def mb = [:]
@@ -37,14 +37,22 @@ class AccessionsController {
        [accYears: h, mb: mb]
    }
    
-   def show = {
-       def acc = Accessions.get(params.id)
-       def refs = Refs.findAllByAccessionId(params.id)
+    def show = {
+        def acc = Accessions.get(params.id)
+        def refs = Refs.findAllByAccessionId(params.id)
        
-       def locations = []
-       def locs = AccLoc.findAllByAccId(params.id)
+        def locations = []
+        def locs = AccLoc.findAllByAccId(params.id)
+       
+        def resources = []
+        def acres = AcResources.findAllByAccId(params.id)
         
-       locs.each{
+        acres.each{
+            def res = Resources.get(it.resId)
+            resources.add(res)
+        }
+        
+        locs.each{
            def l = Locations.get(it.locId)
            StringBuilder locString = new StringBuilder()
             .append(l.building)
@@ -54,6 +62,14 @@ class AccessionsController {
             
             locations.add(locString.toString())
        }
-       [acc:acc, refs: refs, locations: locations]
+       
+       [acc:acc, refs: refs, locations: locations, resources: resources]
    }
+
+    def test = {
+        def rIds = AccRes.findAllByAccId(6661);
+        rIds.each{
+            render it + "<br />"
+        }
+    }
 }

@@ -24,7 +24,20 @@
     
     <p><strong>Container Summary</strong><br />${acc.accContainerSummary}</p>
     
-    
+    <p><strong>Source</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Resources</th>
+        </tr>
+      </thead>
+      <tbody>
+        <g:each in="${resources}" var="res">
+          <tr>
+            <td>${res.resourceId1}.${res.resourceId2}.${res.resourceId3}: ${res.title}</td>
+          </tr>
+        </g:each>
+      </tbody>
     
     <table>
       <thead>
@@ -59,8 +72,6 @@
       </g:each>
       </tbody>
     </table>
-    
-    
   </body>
 </html>
 
